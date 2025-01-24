@@ -1,0 +1,496 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>支付宝 - 网上支付 安全快速！</title>
+    
+
+<link rel="icon" href="https://i.alipayobjects.com/common/favicon/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="https://i.alipayobjects.com/common/favicon/favicon.ico" type="image/x-icon" />    
+
+
+
+
+
+<link media="all" rel="stylesheet" href='https://a.alipayobjects.com:443/al/alice.common.v1-1.5.css' type="text/css" />    <link href="https://a.alipayobjects.com" rel="dns-prefetch" />
+<link href="https://app.alipay.com" rel="dns-prefetch" />
+<link href="https://my.alipay.com" rel="dns-prefetch" />
+<link href="https://lab.alipay.com" rel="dns-prefetch" />
+<link href="https://cashier.alipay.com" rel="dns-prefetch" />
+<link href="https://financeprod.alipay.com" rel="dns-prefetch" />
+<link href="https://shenghuo.alipay.com" rel="dns-prefetch" />
+
+
+<!-- uitpl:/component/trackerTime.vm -->
+    <!-- FD:106:alipay/tracker/iconfont.vm:START --><style>
+@font-face {
+    font-family: "rei";
+    src: url("https://i.alipayobjects.com/common/fonts/rei.eot?20150616"); /* IE9 */
+    src: url("https://i.alipayobjects.com/common/fonts/rei.eot?20150616#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("https://i.alipayobjects.com/common/fonts/rei.woff?20150616") format("woff"), /* chrome 6+、firefox 3.6+、Safari5.1+、Opera 11+ */
+    url("https://i.alipayobjects.com/common/fonts/rei.ttf?20150616")  format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+    url("https://i.alipayobjects.com/common/fonts/rei.svg?20150616#rei") format("svg"); /* iOS 4.1- */
+}
+.iconfont {
+    font-family:"rei";
+    font-style: normal;
+    font-weight: normal;
+    cursor: default;
+    -webkit-font-smoothing: antialiased;
+}
+</style>
+<!-- FD:106:alipay/tracker/iconfont.vm:END -->
+<script type="text/javascript">
+  window._to = { start: new Date() };
+</script>
+
+<!-- FD:106:alipay/tracker/monitor.vm:START --><!-- FD:106:alipay/tracker/sai_seer.vm:START --><script type="text/javascript">
+
+!function(n){function o(r){if(t[r])return t[r].exports;var i=t[r]={exports:{},id:r,loaded:!1};return n[r].call(i.exports,i,i.exports,o),i.loaded=!0,i.exports}var t={};return o.m=n,o.c=t,o.p="",o(0)}([function(n,o){"use strict";window.Sai={log:function(){},error:function(){},lost:function(){},off:function(){},on:function(){},_DATAS:[],_EVENTS:[]}}]);
+
+</script>
+<!-- FD:106:alipay/tracker/sai_seer.vm:END --><!-- FD:106:alipay/tracker/monitor.vm:END -->
+<!-- FD:106:alipay/tracker/seajs.vm:START -->
+
+
+<!-- monitor 防错代码 -->
+<script>
+(function(win){
+  if(!win.monitor){win.monitor = {};}
+
+  var METHODS = ["lost", "log", "error", "on", "off"];
+
+  for(var i=0,method,l=METHODS.length; i<l; i++){
+    method = METHODS[i];
+    if("function" !== typeof win.monitor[method]){
+      win.monitor[method] = function(){};
+    }
+  }
+})(window);
+</script>
+
+<!-- seajs以及插件 -->
+<script charset="utf-8" crossorigin="anonymous" id="seajsnode" onerror="window.monitor && monitor.lost && monitor.lost(this.src)" src="https://a.alipayobjects.com:443/??seajs/seajs/2.2.3/sea.js,seajs/seajs-combo/1.0.0/seajs-combo.js,seajs/seajs-style/1.0.2/seajs-style.js,seajs/seajs-log/1.0.0/seajs-log.js,jquery/jquery/1.7.2/jquery.js,gallery/json/1.0.3/json.js,alipay-request/3.0.8/index.js"></script>
+
+<!-- seajs config 配置 -->
+<script>
+seajs.config({
+  alias: {
+    '$': 'jquery/jquery/1.7.2/jquery',
+    '$-debug': 'jquery/jquery/1.7.2/jquery',
+    'jquery': 'jquery/jquery/1.7.2/jquery',
+    'jquery-debug': 'jquery/jquery/1.7.2/jquery-debug',
+    'seajs-debug': 'seajs/seajs-debug/1.1.1/seajs-debug'
+  },
+  crossorigin: function(uri){
+
+    function typeOf(type){
+	  return function(object){
+	    return Object.prototype.toString.call(object) === '[object ' + type + ']';
+	  }
+	}
+	var isString = typeOf("String");
+	var isRegExp = typeOf("RegExp");
+
+	var whitelist = [];
+
+  whitelist.push('https://a.alipayobjects.com/');
+
+	for (var i=0, rule, l=whitelist.length; i<l; i++){
+	  rule = whitelist[i];
+	  if (
+	    (isString(rule) && uri.indexOf(rule) === 0) ||
+	    (isRegExp(rule) && rule.test(uri))
+		) {
+
+	    return "anonymous";
+	  }
+	}
+  },
+  vars: {
+    locale: 'zh-cn'
+  }
+});
+</script>
+
+<!-- 兼容原有的 plugin-i18n 写法 -->
+<!-- https://github.com/seajs/seajs/blob/1.3.1/src/plugins/plugin-i18n.js -->
+<script>
+seajs.pluginSDK = seajs.pluginSDK || {
+  Module: {
+    _resolve: function() {}
+  },
+  config: {
+    locale: ''
+  }
+};
+// 干掉载入 plugin-i18n.js，避免 404
+seajs.config({
+  map: [
+	[/^.*\/seajs\/plugin-i18n\.js$/, ''],
+	[/^.*\i18n!lang\.js$/, '']
+  ]
+});
+</script>
+
+<!-- 路由旧 ID，解决 seajs.use('select/x.x.x/select') 的历史遗留问题 -->
+<script>
+(function(){
+
+var JQ = '/jquery/1.7.2/jquery.js';
+seajs.cache['https://a.alipayobjects.com:443/gallery' + JQ] = seajs.cache['https://a.alipayobjects.com:443/jquery' + JQ];
+
+var GALLERY_MODULES = [
+  'async','backbone','coffee','cookie','es5-safe','handlebars','iscroll',
+  'jasmine','jasmine-jquery','jquery','jquery-color','json','keymaster',
+  'labjs','less','marked','moment','mustache','querystring','raphael',
+  'socketio','store','swfobject','underscore','zepto','ztree'
+];
+
+var ARALE_MODULES = [
+  'autocomplete','base','calendar','class','cookie','dialog','easing',
+  'events','iframe-uploader','iframe-shim','messenger','overlay','popup',
+  'position','select','switchable','tip','validator','widget'
+];
+
+var util = {};
+util.indexOf = Array.prototype.indexOf ?
+  function(arr, item) {
+    return arr.indexOf(item);
+  } :
+  function(arr, item) {
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] === item) {
+        return i;
+      }
+    }
+    return -1;
+  };
+util.map = Array.prototype.map ?
+  function(arr, fn) {
+    return arr.map(fn);
+  } :
+  function(arr, fn) {
+    var ret = [];
+	for (var i = 0; i < arr.length; i++) {
+        ret.push(fn(arr[i], i, arr));
+    }
+    return ret;
+  };
+
+function contains(arr, item) {
+  return util.indexOf(arr, item) > -1
+}
+
+function map(id) {
+  id = id.replace('#', '');
+
+  var parts = id.split('/');
+  var len = parts.length;
+  var root, name;
+
+  // id = root/name/x.y.z/name
+  if (len === 4) {
+    root = parts[0];
+    name = parts[1];
+
+    // gallery 或 alipay 开头的没有问题
+    if (root === 'alipay' || root === 'gallery') {
+      return id;
+    }
+
+    // arale 开头的
+    if (root === 'arale') {
+      // 处理 arale/handlebars 的情况
+      if (contains(GALLERY_MODULES, name)) {
+        return id.replace('arale/', 'gallery/');
+      } else {
+        return id;
+      }
+    }
+  }
+  // id = name/x.y.z/name
+  else if (len === 3) {
+    name = parts[0]
+
+    // 开头在 GALLERY_MODULES 或 ARALE_MODULES
+    if (contains(GALLERY_MODULES, name)) {
+      return 'gallery/' + id;
+    } else if (contains(ARALE_MODULES, name)) {
+      return 'arale/' + id;
+    }
+  }
+
+  return id;
+}
+
+var _use = seajs.use;
+
+seajs.use = function(ids, callback) {
+  if (typeof ids === 'string') {
+    ids = [ids];
+  }
+
+  ids = util.map(ids, function(id) {
+    return map(id);
+  });
+
+  return _use(ids, callback);
+}
+
+})();
+</script>
+<!-- FD:106:alipay/tracker/seajs.vm:END -->
+<!-- FD:106:alipay/tracker/tracker_time.vm:START --><!-- FD:106:alipay/tracker/tracker_time.vm:784:tracker_time.schema:全站 tracker 开关:START --><script charset="utf-8" crossorigin="crossorigin" src="https://a.alipayobjects.com/static/ar/alipay.light.base-1.8.js"></script>
+
+
+<script type="text/javascript">
+if (!window._to) {
+  window._to = { start: new Date() };
+}
+</script>
+
+<script charset="utf-8" src="https://as.alipayobjects.com/??g/component/tracker/2.3.2/index.js,g/component/smartracker/2.0.2/index.js"></script>
+<script charset="utf-8" src="https://a.alipayobjects.com/g/utiljs/rd/1.0.2/rd.js"></script>
+
+
+
+<script>
+  window.Tracker && Tracker.start &&  Tracker.start();
+</script>
+
+
+
+
+
+
+
+<!-- FD:106:alipay/tracker/tracker_time.vm:784:tracker_time.schema:全站 tracker 开关:END -->
+<!-- FD:106:alipay/tracker/tracker_time.vm:END -->            <link charset="utf-8" rel="stylesheet" href="https://a.alipayobjects.com:443/al/alice.common.pureui-1.0.css" media="all" />
+        <style type="text/css">
+                                </style>
+
+    <style type="text/css">
+        html {
+		    background: none !important;
+		}
+
+		#container {
+		    width: 990px;
+		    margin: 0 auto;
+		}
+        /**旧logo覆盖**/
+        .global-logo a{
+          	          width: 114px;
+            height: 40px;
+            background: url('https://t.alipayobjects.com/images/T11rdgXbFkXXXXXXXX.png') no-repeat center center;
+            background-size: 100% 100%;
+          
+        }
+    </style>
+
+</head>
+<body class="">
+    <div id="container" class="ui-container">
+        <div id="global-header" class="global-header the-alipay-global" coor="nav">
+            <div id="global-header-area" class="fn-clear">
+                <div class="global-logo">
+                    <a href="#" title="我的支付宝" seed="global-logo"><span>支付宝</span></a>
+                </div>
+            </div>
+        </div>
+<script src="https://render.alipay.com/p/s/xss-function/index.js"></script>
+<div class="mi-notice mi-notice-success fn-mt10">
+    <div class="mi-notice-cnt">
+        <div class="mi-notice-title">
+            <i class="iconfont" title="成功">&#xF049;</i>
+            <h3>交易付款成功，正在跳转至商户页面</h3>
+        </div>
+
+                    <p class="mi-notice-explain">您的货款已经打到卖家支付宝账户中，请您积极与卖家联系，确保交易顺利完成。</p>
+            </div>
+</div>
+<input type="hidden" name="redirectUrl" id="J_redirectUrl" value="http://localhost:8080/wangshangdingcan/front/index.html"/>
+
+
+<!-- /component/footCommon.vm -->
+
+<!-- FD:231:alipay/nav/versionSwitch.vm:START --><!-- FD:231:alipay/nav/versionSwitch.vm:1743:nav/versionSwitch.schema:versionSwitch-网站改版导航新老版本切换开关:START -->
+
+
+
+
+
+
+
+<!-- FD:231:alipay/nav/versionSwitch.vm:1743:nav/versionSwitch.schema:versionSwitch-网站改版导航新老版本切换开关:END --><!-- FD:231:alipay/nav/versionSwitch.vm:END -->
+
+
+
+<style>
+.ui-footer {margin-top: 30px; border-top: 1px solid #cccccc; height: 100px; color:#808080;}
+.ui-footer .ui-separator{font-weight: normal;}
+.ui-footer-ctn {border-top: 1px solid #ffffff;padding-top: 15px;text-align: center;}
+.ui-footer-link a {padding: 0 3px 0 2px;}
+.ui-footer-copyright,.ui-footer-phone {padding-top: 10px;}
+.ui-footer-copyright a,.ui-footer-copyright a:hover {color:#808080;}
+.server{color:#fff;}
+</style>
+
+
+<div class="ui-footer fn-clear" coor="footer">
+    
+    <div class="ui-footer-ctn">
+        <!-- FD:231:alipay/foot/links.vm:START --><!-- FD:231:alipay/foot/links.vm:2600:foot/links.schema:links-底部链接:START --><div class="ui-footer-link">
+  
+    <a href="https://job.alibaba.com/zhaopin/index.htm" target="_blank" seed="foot-1">诚征英才</a>
+
+    
+       <em class="ui-separator">|</em>
+       <a seed="foot-2" href="https://ab.alipay.com/i/lianxi.htm" title="联系我们" target="_blank">联系我们</a>
+    
+       <em class="ui-separator">|</em>
+       <a seed="foot-3" href="https://global.alipay.com/" title="International Business" target="_blank">International Business</a>
+    
+  
+</div><!-- FD:231:alipay/foot/links.vm:2600:foot/links.schema:links-底部链接:END --><!-- FD:231:alipay/foot/links.vm:END -->
+        <div class="ui-footer-copyright">
+            <!-- FD:231:alipay/foot/copyright.vm:START --><!-- FD:231:alipay/foot/copyright.vm:2604:foot/copyright.schema:支付宝copyright:START -->
+<style>
+.copyright,.copyright a,.copyright a:hover{color:#808080;}
+</style>
+<div class="copyright">
+      <a href="https://fun.alipay.com/certificate/jyxkz.htm" target="_blank">ICP证：沪B2-20150087</a>
+  </div>
+<div class="server" id="ServerNum">
+  unitradeprod-2-2-1.daily.alipaydev.com &nbsp; 
+</div>
+<!-- FD:231:alipay/foot/copyright.vm:2604:foot/copyright.schema:支付宝copyright:END --><!-- FD:231:alipay/foot/copyright.vm:END -->        </div>
+    </div>
+</div>
+<!-- /component/footCommon.vm -->
+</div>
+<script type="text/javascript">
+    araleConfig = {
+        combo_host: 'https://a.alipayobjects.com:443',
+                debug:true,
+        depSrc:true,
+                combo_path: '/ar/??'
+    }
+</script>
+    <script type="text/javascript">
+    //<![CDATA[
+            var redirectUrl = document.getElementById("J_redirectUrl").value;
+// redirectUrl && setTimeout(function () {
+//     window.location = redirectUrl;
+// }, 3000);
+
+
+redirectUrl && setTimeout(function () {
+    try {
+        if (s_xss_scheme(redirectUrl)) {
+            window.location = redirectUrl;
+        } else {
+            console.info('URL非法');
+        }
+    } catch (e) {
+        // 如果安全的js出错，仍然走原始的url
+        window.location = redirectUrl;
+    }
+}, 3000);
+
+
+
+
+
+        //]]>
+</script>
+
+ 
+<!-- uitpl:/component/tracker.vm -->
+<!-- FD:106:alipay/tracker/tracker.vm:START --><!-- FD:106:alipay/tracker/tracker.vm:785:tracker.schema:全站自动化/性能/敏感信息打点开关:START -->
+
+
+
+<script type="text/javascript">
+window.Smartracker && Smartracker.sow && Smartracker.sow();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+
+window.agp_custom_config = {
+  BASE_URL: '//kcart.alipay.com/p.gif',
+  TIMING_ACTION_URL: '//kcart.alipay.com/x.gif'
+}
+
+</script>
+<script charset="utf-8" src="https://a.alipayobjects.com:443/g/memberAsset/securityMsg/1.0.3/index.js"></script>
+
+
+
+
+
+<!-- FD:106:alipay/tracker/sai.vm:START --><script>
+    sensScanConfig={
+        ratio: 0.01,
+        modules: '*',
+        types: '*'
+      };
+</script>
+
+<script src='https://as.alipayobjects.com/g/alipay_security/monitor-sens/1.0.1/monitor-sens.min.js'></script>
+<!-- FD:106:alipay/tracker/sai.vm:END -->
+
+
+
+<!-- FD:106:alipay/tracker/cmsbuffer.vm:START --><!-- FD:106:alipay/tracker/cmsbuffer.vm:997:cmsbuffer.schema:main-CMS全站修复:START -->
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+
+
+
+<script>
+try {
+  (function() {
+  var logServer = 'https://magentmng.alipay.com/m.gif';
+  var sample = 0.0001;
+  var url = "https://a.alipayobjects.com/http-watch/1.0.7/index.js";
+  localStorage.setItem("goUtl","./pages/caipinOrder/list.html")
+
+  // 判断比例
+  if (!!window.addEventListener && Array.prototype.map && Math.random() < sample) {
+    var HEAD = document.head || document.getElementsByTagName('head')[0];
+
+    var spt = document.createElement('script');
+    spt.src = url;
+    HEAD.appendChild(spt);
+
+	setTimeout(function() {
+	  window.httpWatch && window.httpWatch({ sample: 1, appname: 'unitradeprod-2-2-1.daily.alipaydev.com', logServer: logServer });
+	}, 1000);
+  }
+  })();
+} catch(e) {}
+</script>
+
+<!-- FD:106:alipay/tracker/cmsbuffer.vm:997:cmsbuffer.schema:main-CMS全站修复:END -->
+<!-- FD:106:alipay/tracker/cmsbuffer.vm:END --><!-- FD:106:alipay/tracker/tracker.vm:785:tracker.schema:全站自动化/性能/敏感信息打点开关:END -->
+<!-- FD:106:alipay/tracker/tracker.vm:END --></body>
+</html>
+
